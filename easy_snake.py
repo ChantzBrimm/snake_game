@@ -2,9 +2,11 @@ import pygame
 import random
 import sys
 
+
 def save_high_score(high_score):
     with open("high_score.txt", "w") as file:
         file.write(str(high_score))
+
 
 def load_high_score():
     try:
@@ -12,6 +14,7 @@ def load_high_score():
             return int(file.read())
     except FileNotFoundError:
         return 0
+
 
 def game_over(game_window, white, high_score):
     my_font = pygame.font.SysFont('arial', 50)
@@ -49,6 +52,7 @@ def game_over(game_window, white, high_score):
                     pygame.quit()
                     sys.exit()
 
+
 def restart_game():
     global snake_position, snake_body, fruit_position, fruit_spawn, direction, change_to, score, snake_speed, high_score
 
@@ -64,6 +68,7 @@ def restart_game():
 
     game_loop()
 
+
 def show_score(game_window, choice, color, font, size):
     score_font = pygame.font.SysFont(font, size)
     score_surface = score_font.render('Score : ' + str(score), True, color)
@@ -76,6 +81,7 @@ def show_score(game_window, choice, color, font, size):
 
     game_window.blit(score_surface, score_rect)
 
+
 def show_high_score(game_window, choice, color, font, size, high_score):
     high_score_font = pygame.font.SysFont(font, size)
     high_score_surface = high_score_font.render('High Score : ' + str(high_score), True, color)
@@ -84,6 +90,7 @@ def show_high_score(game_window, choice, color, font, size, high_score):
     if choice == 2:
         high_score_rect.midtop = (window_x - 120, 15)  # Top right corner
         game_window.blit(high_score_surface, high_score_rect)
+
 
 def game_loop():
     global high_score, change_to, direction, fruit_position, snake_position, snake_body, fruit_spawn, score, snake_speed
@@ -147,7 +154,6 @@ def game_loop():
         snake_head_rect = pygame.Rect(snake_position[0], snake_position[1], 10, 10)
         fruit_rect = pygame.Rect(fruit_position[0], fruit_position[1], 10, 10)
 
-
         if snake_head_rect.colliderect(fruit_rect):
             score += 1
             snake_body.insert(0, list(snake_position))
@@ -170,10 +176,8 @@ def game_loop():
 
         show_score(game_window, 1, white, 'arial', 20)
         show_high_score(game_window, 2, white, 'arial', 20, high_score)
-
         pygame.display.update()
-
         fps.tick(snake_speed)
 
-# Start the game loop
+
 game_loop()
