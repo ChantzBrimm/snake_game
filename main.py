@@ -16,7 +16,7 @@ def keyboard_snake():
         if choice == '0':
             main()
         elif choice == "1":
-            pass
+            subprocess.run(['python3', '/Users/chantz/Documents/GitHub/snake_game/keyboard_easy.py'])
         elif choice == '2':
             pass
         elif choice == '3':
@@ -49,9 +49,9 @@ def controller_snake():
 def main():
     while True:
         print("="*15+"Snake Game"+"="*15)
+        print("0. Quit")
         print("1. Snake using keyboard")
         print("2. Snake using controller")
-        print("0. Quit")
         choice = input("What is your choice: ")
 
         if choice == '0':
